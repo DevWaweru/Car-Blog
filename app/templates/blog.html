@@ -1,9 +1,13 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% import 'macros.html' as macro %}
+
+{% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             {{blog_format|safe}}
         </div>
+        {{macro.displayComments(get_comments)}}
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -29,7 +33,6 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %} 
                 
-
                 <p> {{comment_form.post}} </p>
             </form>
         </div>

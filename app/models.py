@@ -64,6 +64,11 @@ class Comment(db.Model):
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
+    
+    @classmethod
+    def get_blog_comments(cls,id):
+        comments = Comment.query.filter_by(blog_id=id).order_by('-id').all()
+        return comments
 
 class Email(db.Model):
     __tablename__='emails'
