@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <blockquote class="blockquote text-center">
                 <p class="mb-0"> {{comment.comment_content}} </p>
-                <footer class="blockquote-footer"> {{comment.name}} <cite title="Source Title">Source Title</cite></footer>
+                <footer class="blockquote-footer"> {{comment.name}} <cite title="Source Title"> {{comment.date_comment}} </cite></footer>
             </blockquote>
         </div>
     {% endfor %}

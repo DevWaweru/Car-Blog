@@ -12,11 +12,16 @@ def index():
     '''
     root function that returns the root page
     '''
-    all_blogs = Blog.get_all_blogs()
-
     title = 'Home | Beaucar'
 
-    return render_template('index.html', title=title, all_blogs=all_blogs)
+    all_blogs = Blog.get_all_blogs()
+    if all_blogs:
+        blogs = all_blogs
+        return render_template('index.html', title=title, all_blogs=blogs )
+    elif not all_blogs:
+        blog_message = 'Whoooops, we have no blogs here'
+        return render_template('index.html', title=title, blog_message = blog_message)
+
 
 @main.route('/create_blog', methods = ['GET','POST'])
 @login_required
@@ -49,7 +54,7 @@ def blog(id):
         user_email = comment_form.email.data
         user_comment = comment_form.comment_data.data
 
-        new_comment = Comment(name=user_name,email=user_email,comment_content=user_comment,blog_id=id)
+        new_comment = Comment(name=user_name,email=user_email,comment_content=user_comment,date_comment = datetime.now(),blog_id=id)
         new_comment.save_comment()
 
         return redirect(url_for('main.blog',id=id))

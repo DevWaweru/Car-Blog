@@ -59,6 +59,7 @@ class Comment(db.Model):
     name = db.Column(db.String())
     email = db.Column(db.String())
     comment_content = db.Column(db.String())
+    date_comment = db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
     blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
     
     def save_comment(self):
