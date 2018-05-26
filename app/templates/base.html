@@ -1,7 +1,17 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block styles %}
-    {{ super() }}
-    {{simplemde.css}}
-    {{simplemde.js}}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+{{simplemde.css}}
+{{simplemde.js}}
 {% endblock %}
+
+{% block navbar%}
+{% include 'navbar.html' %}
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="{{url_for('static',filename='js/script.js')}}"></script>
+{%endblock%}
