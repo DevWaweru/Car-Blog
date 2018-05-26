@@ -2,39 +2,47 @@
 {% import 'macros.html' as macro %}
 
 {% block content %}
-<div class="container" id="top">
+<div class="container" id="blog-top">
     <div class="row">
-        <div class="col-md-12">
-            {{blog_format|safe}}
+        <div class="col-md-12 blog-image">
+            <h2> {{get_blog.title}} </h2>
+            <img src="{{url_for('static',filename='img/bg-blog.jpeg')}}" alt="blog-image">
         </div>
-        {{macro.displayComments(get_comments)}}
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <form id="comments-form" class="form-group" method="POST">
-                {{comment_form.hidden_tag()}}
-
-                {{comment_form.comment_data.label}} <br>
-                {{comment_form.comment_data}} 
-                {% for error in comment_form.comment_data.errors%}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-                <br>
-
-                {{comment_form.name.label}} 
-                {{comment_form.name}} 
-                {% for error in comment_form.name.errors%}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %} 
-                
-                {{comment_form.email.label}} 
-                {{comment_form.email}} 
-                {% for error in comment_form.email.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %} 
-                
-                <p> {{comment_form.post}} </p>
-            </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 blog-content">
+                {{blog_format|safe}}
+            </div>
+            {{macro.displayComments(get_comments)}}
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form id="comments-form" class="form-group" method="POST">
+                    {{comment_form.hidden_tag()}}
+    
+                    {{comment_form.comment_data.label}} <br>
+                    {{comment_form.comment_data}} 
+                    {% for error in comment_form.comment_data.errors%}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                    <br>
+    
+                    {{comment_form.name.label}} 
+                    {{comment_form.name}} 
+                    {% for error in comment_form.name.errors%}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %} 
+                    
+                    {{comment_form.email.label}} 
+                    {{comment_form.email}} 
+                    {% for error in comment_form.email.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %} 
+                    
+                    <p> {{comment_form.post}} </p>
+                </form>
+            </div>
         </div>
     </div>
 </div>

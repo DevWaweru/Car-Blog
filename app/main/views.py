@@ -61,4 +61,4 @@ def blog(id):
     
     get_comments = Comment.get_blog_comments(id)
 
-    return render_template('blog.html', blog_format=blog_format, title="Blog", comment_form=comment_form, get_comments=get_comments)
+    return render_template('blog.html', blog_format=blog_format, get_blog=get_blog, title="Blog", comment_form=comment_form, get_comments=get_comments)

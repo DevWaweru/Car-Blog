@@ -115,7 +115,7 @@ body {
         border-bottom: none;
         background: transparent;
     }
-    #mainNav a{
+    #mainNav a {
         color: black;
     }
     #mainNav.navbar-shrink {
@@ -124,7 +124,7 @@ body {
         border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         background: black;
     }
-    #mainNav.navbar-shrink a{
+    #mainNav.navbar-shrink a {
         color: white;
     }
     #mainNav .nav-link.active {
@@ -256,8 +256,34 @@ body {
     display: flex;
     justify-content: center;
 }
-
+.blogs-title{
+    margin-bottom: 2rem;
+}
 .blogs {
     padding-top: 3rem;
     padding-bottom: 3rem;
+}
+
+.blogs-snippet{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    box-shadow: 2px 4px 50px 2px #DCDCDC;
+}
+
+.blog-image img{
+    width: 100%;
+    z-index: -1;
+}
+.blog-image{
+    text-align: center;
+}
+#blog-top{
+    margin-top: 5rem;
+}
+.blog-content{
+    padding-top: 3rem;
+    padding-right: 2rem;
+    padding-right: 2rem;
 }

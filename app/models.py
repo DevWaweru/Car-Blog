@@ -35,6 +35,7 @@ class Blog(db.Model):
     title = db.Column(db.String())
     blog_content = db.Column(db.String())
     date_posted = db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
+    blog_pic = db.Column(db.String(255))
     
     comment = db.relationship('Comment',backref='blog',lazy='dynamic')
     photo = db.relationship('Photo', backref='blog',lazy='dynamic')

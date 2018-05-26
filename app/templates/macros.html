@@ -1,6 +1,6 @@
 {% macro displayBlogs(blogs) %}
     {% for blog in blogs %}
-        <div class="col-md-12 blog-snippet">
+        <div class="col-md-12 blogs-snippet">
             <h3><a href="{{url_for('main.blog',id=blog.id)}}">{{blog.title}}</a></h3>
             <p> {{blog.blog_content|truncate(300)}}<a href="{{url_for('main.blog',id=blog.id)}}">View More</a> </p>
             <p class="small"> {{blog.date_posted}} </p>
