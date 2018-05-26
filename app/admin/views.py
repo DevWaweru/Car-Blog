@@ -6,12 +6,11 @@ from .forms import RegistrationForm, LoginForm
 from . import admin
 
 @admin.route('/register', methods = ['GET','POST'])
+@login_required
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(email = form.email.data, username = form.username.data,hash_pass = form.password.data)
+        user = User(email = form.email.data, username = form.username.data, password = form.password.data)
         db.session.add(user)
         db.session.commit()
 
@@ -38,3 +37,10 @@ def login():
 
     title = "Admin Login | BeauCar "
     return render_template('admin/login.html', login_form = login_form,title=title)
+    
+@admin.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    # flash("You have been successfully logged out")
+    return redirect(url_for('main.index'))

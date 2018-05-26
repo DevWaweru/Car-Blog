@@ -1,17 +1,22 @@
-body{
+body {
     transition: background-color .5s;
 }
+
+.container-fluid {
+    padding: 0;
+}
+
 .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 3;
     top: 0;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 20px;
 }
 
 .sidenav a {
@@ -22,6 +27,7 @@ body{
     display: block;
     transition: 0.3s;
 }
+
 .sidenav a:hover {
     color: #f1f1f1;
 }
@@ -36,14 +42,41 @@ body{
 
 #top {
     transition: margin-left .5s;
-    padding: 16px;
 }
-.open-nav{
+
+.open-nav {
     font-size: 30px;
     cursor: pointer;
+    margin-top: 2rem;
+    margin-left: 4rem;
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.front-page {
+    background-image: url('/static/img/bg-front.jpg');
+}
+
+.front-page h1 {
+    padding-top: 15rem;
+    padding-bottom: 35rem;
+    display: flex;
+    justify-content: center;
+}
+
+.open-navbar,
+.open-nav {
+    z-index: 2;
+}
+
+.open-navbar,
+#top {
+    position: absolute;
 }

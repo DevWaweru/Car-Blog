@@ -2,12 +2,17 @@
 {% import 'macros.html' as macro %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <h1>{{blog_message}}</h1>
+<div class="container-fluid" id="top">
+    <div class="row front-page">
+        <div class="col-md-12">
+            <h1>Welcome to BeauCar</h1>
+        </div>
     </div>
-    <div class="row">
-        {{macro.displayBlogs(all_blogs)}}
+    <div class="container">
+        <div class="row">
+            <h1>{{blog_message}}</h1>
+            {{macro.displayBlogs(all_blogs)}}
+        </div>
     </div>
 </div>
 {% endblock%}
