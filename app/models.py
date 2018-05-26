@@ -35,10 +35,13 @@ class Blog(db.Model):
     title = db.Column(db.String())
     blog_content = db.Column(db.String())
     date_posted = db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
-    blog_picture = db.Column(db.String())
     
     comment = db.relationship('Comment',backref='blog',lazy='dynamic')
     photo = db.relationship('Photo', backref='blog',lazy='dynamic')
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
 
 class Comment(db.Model):
     __tablename__='comments'
