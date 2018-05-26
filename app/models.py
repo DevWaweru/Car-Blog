@@ -42,6 +42,16 @@ class Blog(db.Model):
     def save_blog(self):
         db.session.add(self)
         db.session.commit()
+    
+    @classmethod
+    def get_all_blogs(cls):
+        blogs = Blog.query.order_by('-id').all()
+        return blogs
+    
+    @classmethod
+    def get_single_blog(cls,id):
+        blog = Blog.query.filter_by(id=id).first()
+        return blog
 
 class Comment(db.Model):
     __tablename__='comments'
