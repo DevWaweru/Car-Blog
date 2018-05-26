@@ -9,7 +9,7 @@ from config import config_options
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
-login_manager.login_view = 'auth.login'
+login_manager.login_view = 'admin.login'
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
@@ -35,6 +35,10 @@ def create_app(config_name):
     # Register the main app blueprint
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    # adding the admin app blueprint
+    from .admin import admin as admin_blueprint
+    app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
     configure_uploads(app,photos)
 
