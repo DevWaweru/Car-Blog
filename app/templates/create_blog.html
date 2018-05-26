@@ -19,7 +19,6 @@
                         {{blog_form.hidden_tag()}}
                         <p>{{blog_form.title.label}}</p>
                         <p>{{blog_form.title}}</p>
-
                         {% for error in blog_form.title.errors %}
                             <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}

@@ -34,7 +34,7 @@ def create_blog():
 
     return render_template('create_blog.html', title = 'Create Blog', blog_form = blog_form)
 
-@main.route('/blog/<int:id>')
+@main.route('/blog/<int:id>', methods=['GET','POST'])
 def blog(id):
     get_blog = Blog.query.get(id)
     if get_blog is None:
@@ -42,4 +42,16 @@ def blog(id):
 
     blog_format = markdown2.markdown(get_blog.blog_content,extras=["code-friendly", "fenced-code-blocks"])
 
-    return render_template('blog.html', blog_format=blog_format, title="Blog")
+    comment_form = CommentForm()
+
+    if comment_form.validate_on_submit():
+        user_name = comment_form.name.data
+        user_email = comment_form.email.data
+        user_comment = comment_form.comment_data.data
+
+        new_comment = Comment(name=user_name,email=user_email,comment_content=user_comment,blog_id=id)
+        new_comment.save_comment()
+
+        return redirect(url_for('main.blog',id=id))
+
+    return render_template('blog.html', blog_format=blog_format, title="Blog", comment_form=comment_form)

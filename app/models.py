@@ -60,6 +60,10 @@ class Comment(db.Model):
     email = db.Column(db.String())
     comment_content = db.Column(db.String())
     blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
+    
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
 
 class Email(db.Model):
     __tablename__='emails'
