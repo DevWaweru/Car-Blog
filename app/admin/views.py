@@ -5,13 +5,13 @@ from .. import db
 from .forms import RegistrationForm, LoginForm
 from . import admin
 
-@admin.route('/register')
+@admin.route('/register', methods = ['GET','POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(email = form.email.data, username = form.username.data,password = form.password.data)
+        user = User(email = form.email.data, username = form.username.data,hash_pass = form.password.data)
         db.session.add(user)
         db.session.commit()
 
@@ -24,7 +24,7 @@ def register():
 
     return render_template('admin/register.html',registration_form = form, title = title)
 
-@admin.route('/login')
+@admin.route('/login', methods = ['GET','POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
