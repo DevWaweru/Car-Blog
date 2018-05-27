@@ -6,6 +6,7 @@ from .. import db, photos
 from .forms import BlogForm, CommentForm, EmailForm
 from datetime import datetime
 from time import time, sleep
+from ..user_emails import send_subscriptions
 import markdown2
 
 @main.route('/', methods = ['GET','POST'])
@@ -22,6 +23,7 @@ def index():
         new_subscription = Email(name=user_name,email_data=user_email)
         new_subscription.save_email()
 
+        send_subscriptions(new_subscription)
         return redirect(url_for('main.subscribed'))
 
     title = 'Home | Beaucar'

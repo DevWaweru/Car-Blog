@@ -16,5 +16,3 @@ def send_reset_email(user):
 
 def send_registration_email(user, pass_key):
     send_email('Blog Contributor',sender=app.config['MAIL_USERNAME'],recepients=[user.email],text_body=render_template('emails/registration.txt',user=user, pass_key=pass_key),html_body=render_template('emails/registration.html',user=user, pass_key=pass_key))
-
-# def send_subscriptions():
