@@ -6,7 +6,17 @@
     <div class="row">
         <div class="col-md-12 blog-image">
             <h2> {{get_blog.title}} </h2>
+            {% if get_blog.blog_pic %}
+            <img src="{{url_for('static',filename = get_blog.blog_pic)}}" alt="">
+            {% else %}
             <img src="{{url_for('static',filename='img/bg-blog.jpeg')}}" alt="blog-image">
+            {% endif %}
+            {% if current_user.is_authenticated %}
+            <form action="{{url_for('main.update_pic',id=get_blog.id)}}" method="post" enctype="multipart/form-data">
+                <input type="file" name="photo" class="form-control" required>
+                <input class="btn btn-secondary" type="submit">
+            </form>
+            {% endif %}
         </div>
     </div>
     <div class="container">
@@ -14,7 +24,17 @@
             <div class="col-md-12 blog-content">
                 {{blog_format|safe}}
             </div>
-            {{macro.displayComments(get_comments)}}
+            {% for comment in get_comments %}
+                <div class="col-md-12">
+                    <blockquote class="blockquote text-center">
+                        <p class="mb-0"> {{comment.comment_content}} </p>
+                        <footer class="blockquote-footer"> {{comment.name}} <cite title="Source Title"> {{comment.date_comment}} </cite></footer>
+                        {% if current_user.is_authenticated%}
+                        <p><a href="{{url_for('main.delete_comment',id=comment.blog_id,id_comment=comment.id)}}">delete</a></p>
+                        {% endif %}
+                    </blockquote>
+                </div>
+            {% endfor %}
         </div>
         <div class="row">
             <div class="col-md-12">

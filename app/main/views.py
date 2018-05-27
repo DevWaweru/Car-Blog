@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, abort
 from . import main
 from ..models import User, Blog, Comment, Email
 from flask_login import login_required, current_user
@@ -62,3 +62,25 @@ def blog(id):
     get_comments = Comment.get_blog_comments(id)
 
     return render_template('blog.html', blog_format=blog_format, get_blog=get_blog, title="Blog", comment_form=comment_form, get_comments=get_comments)
+
+@main.route('/blog/<int:id>/update/pic',methods= ['POST'])
+@login_required
+def update_pic(id):
+    blog = Blog.get_single_blog(id)
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        blog.blog_pic = path
+        # user_photo = PhotoProfile(pic_path = path,user = user)
+        db.session.commit()
+    return redirect(url_for('main.blog',id=id))
+
+@main.route('/blog/<int:id>/<int:id_comment>/delete_comment')
+@login_required
+def delete_comment(id,id_comment):
+    comment = Comment.get_single_comment(id,id_comment)
+
+    db.session.delete(comment)
+    db.session.commit()
+
+    return redirect(url_for('main.blog',id=id))

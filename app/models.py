@@ -71,7 +71,12 @@ class Comment(db.Model):
     def get_blog_comments(cls,id):
         comments = Comment.query.filter_by(blog_id=id).order_by('-id').all()
         return comments
-
+    
+    @classmethod
+    def get_single_comment(cls,id_blog,id):
+        comment = Comment.query.filter_by(blog_id=id_blog,id=id).first()
+        return comment
+        
 class Email(db.Model):
     __tablename__='emails'
     id = db.Column(db.Integer, primary_key=True)

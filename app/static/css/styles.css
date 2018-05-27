@@ -134,10 +134,17 @@ body {
     #mainNav .nav-link.active:hover {
         color: white;
     }
+    #mainNav{
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 .front-page {
     background-image: url('/static/img/bg-front.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: contain;
 }
 
 .front-page h1 {
@@ -222,7 +229,7 @@ body {
     margin-left: -10px;
     font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
     font-size: 22px;
-    color: #fff;
+    color: rgb(0, 0, 0);
     text-transform: uppercase;
     white-space: nowrap;
     opacity: .25;
@@ -256,33 +263,46 @@ body {
     display: flex;
     justify-content: center;
 }
-.blogs-title{
+
+.blogs-title {
     margin-bottom: 2rem;
 }
+
 .blogs {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    display: flex;
+    justify-content: center;
 }
 
-.blogs-snippet{
+.blogs-snippet {
+    padding: 0;
+    margin: 1rem;
+    box-shadow: 2px 4px 50px 2px #DCDCDC;
+    border-radius: 10px;
+}
+
+.blog-snippet-content {
     padding-top: 1rem;
     padding-bottom: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
-    box-shadow: 2px 4px 50px 2px #DCDCDC;
 }
 
-.blog-image img{
+.blog-image img,
+.blogs-snippet img {
     width: 100%;
-    z-index: -1;
 }
-.blog-image{
+
+.blog-image {
     text-align: center;
 }
-#blog-top{
+
+#blog-top {
     margin-top: 5rem;
 }
-.blog-content{
+
+.blog-content {
     padding-top: 3rem;
     padding-right: 2rem;
     padding-right: 2rem;
