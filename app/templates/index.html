@@ -49,11 +49,33 @@
     </div>
 </div>
 <footer>
-    <div class="container text-center">
+    <div class="container-fluid text-center subscribe" id="subscribe">
         <h2>Get the latest updates on new articles</h2>
-        <form action="">
-            
+        <form action="" method="POST">
+            {{subscribe_form.hidden_tag()}}
+            {{subscribe_form.email}}
+            {{subscribe_form.name}}
+            {{subscribe_form.subscribe}}
         </form>
+    </div>
+    <div class="container-fluid social text-center">
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <a href="#">
+                    <i class="fa fa-facebook fa-2x"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="#">
+                    <i class="fa fa-twitter fa-2x"></i>
+                </a>
+            </li>
+            <li class="list-inline-item">
+                <a href="#">
+                    <i class="fa fa-pinterest fa-2x"></i>
+                </a>
+            </li>
+        </ul>
     </div>
 </footer>
 {% endblock%}

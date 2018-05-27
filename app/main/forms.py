@@ -8,12 +8,12 @@ class BlogForm(FlaskForm):
     post = SubmitField('Post Blog')
 
 class CommentForm(FlaskForm):
-    name = StringField('Name',validators=[Required()])
-    email = StringField('Email', validators=[Required()])
-    comment_data = TextAreaField('Enter Comment', validators=[Required()])
+    name = StringField('Name',validators=[Required()],render_kw={"placeholder": "Name"})
+    email = StringField('Email', validators=[Required()],render_kw={"placeholder": "Email"})
+    comment_data = TextAreaField('Enter Comment', validators=[Required()],render_kw={"placeholder": "Comment"})
     post = SubmitField('Post Comment')
 
 class EmailForm(FlaskForm):
-    name = StringField('First Name', validators=[Required()])
-    email = StringField('Email', validators=[Required()])
+    name = StringField('First Name', validators=[Required()],render_kw={"placeholder": "First Name"})
+    email = StringField('Email', validators=[Required()],render_kw={"placeholder": "Email"})
     subscribe = SubmitField('Subscribe')

@@ -8,7 +8,7 @@ from datetime import datetime
 from time import time, sleep
 import markdown2
 
-@main.route('/')
+@main.route('/', methods = ['GET','POST'])
 def index():
     '''
     root function that returns the root page
@@ -121,4 +121,4 @@ def subscribed():
     sleep(5)
     redirect(url_for('main.index'))
 
-    return render_template('subscribed.html',title = 'Subscribed!')
+    return render_template('subscribed.html', title = 'Subscribed!')
