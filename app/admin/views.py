@@ -4,7 +4,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 from .. import db
 from .forms import RegistrationForm, LoginForm, ResetPassword, NewPassword
 from . import admin
-from ..email import send_email, send_reset_email
+from ..email import send_email, send_reset_email, send_registration_email
 
 @admin.route('/register', methods = ['GET','POST'])
 @login_required
@@ -12,11 +12,14 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(email = form.email.data, username = form.username.data, password = form.password.data)
+        pass_key = form.password.data
+        print(pass_key)
         db.session.add(user)
         db.session.commit()
 
         # mail_message('Welcome to Watchlist', 'email/welcome_user', user.email, user=user)
         # send_email(subject="Registration", sender=os.environ.get('MAIL_USERNAME'),recepients=[user.email],text_body='Test Email',html_body=render_template('500.html'))
+        send_registration_email(user, pass_key)
 
         return redirect(url_for('admin.login'))
     
