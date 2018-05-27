@@ -6,7 +6,7 @@ from .. import db, photos
 from .forms import BlogForm, CommentForm, EmailForm
 from datetime import datetime
 from time import time, sleep
-from ..user_emails import send_subscriptions
+from ..user_emails import send_subscriptions, send_blogs
 import markdown2
 
 @main.route('/', methods = ['GET','POST'])
@@ -50,6 +50,7 @@ def create_blog():
         new_blog = Blog(title=blog_title, blog_content = blog, date_posted = datetime.now())
         new_blog.save_blog()
 
+        send_blogs(new_blog)
         return redirect(url_for('main.blog',id=new_blog.id))
 
     return render_template('create_blog.html', title = 'Create Blog', blog_form = blog_form)
