@@ -5,6 +5,7 @@ from flask_login import login_required, current_user
 from .. import db, photos
 from .forms import BlogForm, CommentForm, EmailForm
 from datetime import datetime
+from time import time, sleep
 import markdown2
 
 @main.route('/')
@@ -12,15 +13,27 @@ def index():
     '''
     root function that returns the root page
     '''
+    form = EmailForm()
+
+    if form.validate_on_submit():
+        user_name = form.name.data
+        user_email = form.email.data
+
+        new_subscription = Email(name=user_name,email_data=user_email)
+        new_subscription.save_email()
+
+        return redirect(url_for('main.subscribed'))
+
     title = 'Home | Beaucar'
 
     all_blogs = Blog.get_all_blogs()
+
     if all_blogs:
         blogs = all_blogs
-        return render_template('index.html', title=title, all_blogs=blogs )
+        return render_template('index.html', title=title, all_blogs=blogs, subscribe_form = form)
     elif not all_blogs:
         blog_message = 'Whoooops, we have no blogs here'
-        return render_template('index.html', title=title, blog_message = blog_message)
+        return render_template('index.html', title=title, blog_message = blog_message, subscribe_form = form)
 
 
 @main.route('/create_blog', methods = ['GET','POST'])
@@ -101,3 +114,11 @@ def delete_blog(id):
     flash('Blog has been deleted') 
 
     return redirect(url_for('main.index'))
+
+@main.route('/subscribed')
+def subscribed():
+    
+    sleep(5)
+    redirect(url_for('main.index'))
+
+    return render_template('subscribed.html',title = 'Subscribed!')
