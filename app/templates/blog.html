@@ -4,19 +4,34 @@
 {% block content %}
 <div class="container" id="blog-top">
     <div class="row">
-        <div class="col-md-12 blog-image">
+        <div class="col-md-12 blog-header">
+            <!-- Flash message -->
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+            {% endfor %}
             <h2> {{get_blog.title}} </h2>
-            {% if get_blog.blog_pic %}
-            <img src="{{url_for('static',filename = get_blog.blog_pic)}}" alt="">
-            {% else %}
-            <img src="{{url_for('static',filename='img/bg-blog.jpeg')}}" alt="blog-image">
+            <p>{{get_blog.date_posted}} | {{comments_count}} comments</p>
+            {% if current_user.is_authenticated%}
+            <a href="{{url_for('main.delete_blog',id=get_blog.id)}}">Delete Blog</a>
             {% endif %}
-            {% if current_user.is_authenticated %}
-            <form action="{{url_for('main.update_pic',id=get_blog.id)}}" method="post" enctype="multipart/form-data">
-                <input type="file" name="photo" class="form-control" required>
-                <input class="btn btn-secondary" type="submit">
-            </form>
-            {% endif %}
+        </div>
+        <div class="col-md-12 image">
+            <div class="col-md-7 blog-image">
+                {% if get_blog.blog_pic %}
+                <img src="{{url_for('static',filename = get_blog.blog_pic)}}" alt="">
+                {% else %}
+                <img src="{{url_for('static',filename='img/bg-blog.jpeg')}}" alt="blog-image">
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <form action="{{url_for('main.update_pic',id=get_blog.id)}}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="photo" class="form-control" required>
+                    <input class="btn btn-secondary" type="submit">
+                </form>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="container">
@@ -24,20 +39,25 @@
             <div class="col-md-12 blog-content">
                 {{blog_format|safe}}
             </div>
-            {% for comment in get_comments %}
-                <div class="col-md-12">
-                    <blockquote class="blockquote text-center">
-                        <p class="mb-0"> {{comment.comment_content}} </p>
-                        <footer class="blockquote-footer"> {{comment.name}} <cite title="Source Title"> {{comment.date_comment}} </cite></footer>
-                        {% if current_user.is_authenticated%}
-                        <p><a href="{{url_for('main.delete_comment',id=comment.blog_id,id_comment=comment.id)}}">delete</a></p>
-                        {% endif %}
-                    </blockquote>
-                </div>
-            {% endfor %}
         </div>
+        <hr><br>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+                <h3>Comments</h3>
+                <hr>
+                {% for comment in get_comments %}
+                    <div class="col-md-12">
+                        <blockquote class="blockquote text-left">
+                            <p class="mb-0"> {{comment.comment_content}} </p>
+                            <footer class="blockquote-footer"> {{comment.name}} <cite title="Source Title"> {{comment.date_comment}} </cite></footer>
+                            {% if current_user.is_authenticated%}
+                            <p><a href="{{url_for('main.delete_comment',id=comment.blog_id,id_comment=comment.id)}}">delete</a></p>
+                            {% endif %}
+                        </blockquote>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
                 <form id="comments-form" class="form-group" method="POST">
                     {{comment_form.hidden_tag()}}
     

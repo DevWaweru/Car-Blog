@@ -134,7 +134,7 @@ body {
     #mainNav .nav-link.active:hover {
         color: white;
     }
-    #mainNav{
+    #mainNav {
         padding-left: 0;
         padding-right: 0;
     }
@@ -294,7 +294,13 @@ body {
     width: 100%;
 }
 
-.blog-image {
+.image {
+    display: flex;
+    justify-content: center;
+}
+
+.blog-image,
+.blog-header {
     text-align: center;
 }
 
@@ -306,4 +312,7 @@ body {
     padding-top: 3rem;
     padding-right: 2rem;
     padding-right: 2rem;
+}
+.close{
+    z-index: 2040;
 }

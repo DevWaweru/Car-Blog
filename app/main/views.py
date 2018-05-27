@@ -42,6 +42,8 @@ def create_blog():
 @main.route('/blog/<int:id>', methods=['GET','POST'])
 def blog(id):
     get_blog = Blog.query.get(id)
+    get_blog_comments = Comment.get_blog_comments(id)
+
     if get_blog is None:
         abort(404)
 
@@ -61,7 +63,7 @@ def blog(id):
     
     get_comments = Comment.get_blog_comments(id)
 
-    return render_template('blog.html', blog_format=blog_format, get_blog=get_blog, title="Blog", comment_form=comment_form, get_comments=get_comments)
+    return render_template('blog.html', blog_format=blog_format, get_blog=get_blog, title="Blog", comment_form=comment_form, get_comments=get_comments, comments_count = len(get_blog_comments))
 
 @main.route('/blog/<int:id>/update/pic',methods= ['POST'])
 @login_required
@@ -83,4 +85,19 @@ def delete_comment(id,id_comment):
     db.session.delete(comment)
     db.session.commit()
 
+    flash('Comment has been deleted')
+
     return redirect(url_for('main.blog',id=id))
+
+
+@main.route('/index/<int:id>/delete_blog')
+@login_required
+def delete_blog(id):
+    blog = Blog.get_single_blog(id)
+
+    db.session.delete(blog)
+    db.session.commit()
+
+    flash('Blog has been deleted') 
+
+    return redirect(url_for('main.index'))
