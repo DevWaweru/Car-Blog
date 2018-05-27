@@ -3,6 +3,7 @@ from . import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+from time import time
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -27,7 +28,18 @@ class User(UserMixin,db.Model):
         self.hash_pass = generate_password_hash(password)
 
     def verify_password(self,password):
-        return check_password_hash(self.hash_pass,password)    
+        return check_password_hash(self.hash_pass,password)  
+    
+    def get_reset_password_token(self, expires_in=600):
+        return jwt.encode({'reset_password':self.id, 'exp':time()+expires_in}, os.environ.get('SECRET_KEY'), algorithm='HS256').decode('utf-8')
+    
+    @staticmethod
+    def verify_reset_password(token):
+        try:
+            id = jwt.decode(token, os.environ.get('SECRET_KEY'),algorithms=['HS256'])['reset_password']
+        except:
+            return
+        return User.query.get(id)  
 
 class Blog(db.Model):
     __tablename__='blogs'

@@ -119,6 +119,6 @@ def delete_blog(id):
 def subscribed():
     
     sleep(5)
-    redirect(url_for('main.index'))
+    # return redirect(url_for('main.index'))
 
     return render_template('subscribed.html', title = 'Subscribed!')
