@@ -396,6 +396,8 @@ a:hover{
 .social {
     padding: 2rem 0;
     background-color: black;
+}
+.one-page{
     position: absolute;
     bottom: 0;
 }
