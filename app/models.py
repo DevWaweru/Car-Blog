@@ -60,7 +60,7 @@ class Blog(db.Model):
     def get_all_blogs(cls):
         blogs = Blog.query.order_by('-id').all()
         return blogs
-    
+
     @classmethod
     def get_single_blog(cls,id):
         blog = Blog.query.filter_by(id=id).first()
