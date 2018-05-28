@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container" id="blog-top">
     <div class="row">
-        <div class="col-md-12 blog-header">
+        <div class="col-md-9 blog-header">
             <!-- Flash message -->
             {% for message in get_flashed_messages() %}
             <div class="alert alert-danger">
@@ -13,7 +13,7 @@
             </div>
             {% endfor %}
             <h2> {{get_blog.title}} </h2>
-            <p>{{get_blog.date_posted}} | {{comments_count}} comments</p>
+            <p>{{get_blog.date_posted.strftime('%Y-%m-%d %H:%M')}} | {{comments_count}} comments</p>
             {% if current_user.is_authenticated%}
             <a href="{{url_for('main.delete_blog',id=get_blog.id)}}">Delete Blog</a>
             {% endif %}
@@ -28,28 +28,28 @@
                 {% if current_user.is_authenticated %}
                 <form action="{{url_for('main.update_pic',id=get_blog.id)}}" method="post" enctype="multipart/form-data">
                     <input type="file" name="photo" class="form-control" required>
-                    <input class="btn btn-secondary" type="submit">
+                    <input class="submit" id="submit" type="submit">
                 </form>
                 {% endif %}
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container comments">
         <div class="row">
-            <div class="col-md-12 blog-content">
+            <div class="col-md-9 blog-content">
                 {{blog_format|safe}}
             </div>
         </div>
         <hr><br>
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row blog-entries">
+            <div class="col-md-9">
                 <h3>Comments</h3>
                 <hr>
                 {% for comment in get_comments %}
                     <div class="col-md-12">
                         <blockquote class="blockquote text-left">
                             <p class="mb-0"> {{comment.comment_content}} </p>
-                            <footer class="blockquote-footer"> {{comment.name}} <cite title="Source Title"> {{comment.date_comment}} </cite></footer>
+                            <footer class="blockquote-footer"> {{comment.name}} <cite title="Source Title"> {{comment.date_comment.strftime('%Y-%m-%d %H:%M')}} </cite></footer>
                             {% if current_user.is_authenticated%}
                             <p><a href="{{url_for('main.delete_comment',id=comment.blog_id,id_comment=comment.id)}}">delete</a></p>
                             {% endif %}
@@ -57,29 +57,26 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="col-md-6">
+            <hr>
+            <div class="col-md-9">
                 <form id="comments-form" class="form-group" method="POST">
                     {{comment_form.hidden_tag()}}
     
-                    {{comment_form.comment_data.label}} <br>
                     {{comment_form.comment_data}} 
                     {% for error in comment_form.comment_data.errors%}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                     <br>
-    
-                    {{comment_form.name.label}} 
                     {{comment_form.name}} 
                     {% for error in comment_form.name.errors%}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %} 
-                    
-                    {{comment_form.email.label}} 
+                    <br>
                     {{comment_form.email}} 
                     {% for error in comment_form.email.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %} 
-                    
+                    <br>
                     <p> {{comment_form.post}} </p>
                 </form>
             </div>

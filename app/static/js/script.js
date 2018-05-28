@@ -45,4 +45,5 @@ $(document).ready(function () {
         document.getElementById("navbar").style.width = "250px";
         document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
     })
+    $('#comment_data, #name, #email').addClass('form-control')
 })

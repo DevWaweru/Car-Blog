@@ -27,6 +27,7 @@ body {
     color: #818181;
     display: block;
     transition: 0.3s;
+    font-family: 'Alegreya Sans SC'
 }
 
 .sidenav a:hover {
@@ -64,7 +65,7 @@ body {
 /* second nav bar */
 
 #mainNav {
-    font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Alegreya Sans SC', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin-bottom: 0;
     text-transform: uppercase;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -148,10 +149,13 @@ body {
 }
 
 .front-page h1 {
-    padding-top: 15rem;
-    padding-bottom: 38rem;
+    padding-top: 8rem;
+    padding-bottom: 30rem;
     display: flex;
     justify-content: center;
+    font-family: 'Lovers Quarrel';
+    font-size: 10rem;
+    word-break: break-all;
 }
 
 /* Animating the scroll down button */
@@ -247,11 +251,47 @@ body {
     padding-left: 5rem;
 }
 
+/* Authentication styles */
+
+.authenticate {
+    padding-top: 10rem;
+    font-family: 'Antic';
+    font-size: 20px;
+}
+
+#submit,
+#post,
+#subscribe {
+    background-color: transparent;
+    color: rgb(211, 10, 10);
+    border: 1px solid rgb(211, 10, 10);
+    width: 10rem;
+    padding: 5px 0;
+    border-radius: 6px;
+}
+
+#submit:hover,
+#post:hover,
+#subscribe:hover {
+    cursor: pointer;
+    background-color: rgb(211, 10, 10);
+    color: white;
+}
+
+.one-pages {
+    margin-top: 7rem;
+}
+
+.blog-entries {
+    font-family: 'Tenor Sans';
+}
+
 /* Blogs styles */
 
 .blogs-title h1 {
     display: flex;
     justify-content: center;
+    word-break: break-all;
 }
 
 .blogs-title {
@@ -278,6 +318,20 @@ body {
     padding-left: 2rem;
     padding-right: 2rem;
 }
+.blog-snippet-content h3{
+    font-family: 'Alegreya Sans SC';
+    word-break: break-all;
+}
+.blog-snippet-content p{
+    font-family: 'Antic';
+}
+a{
+    color: rgb(10, 0, 151);
+}
+a:hover{
+    color: rgb(96, 10, 235);
+    text-decoration: none;
+}
 
 .blog-image img,
 .blogs-snippet img {
@@ -286,12 +340,13 @@ body {
 
 .image {
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 
 .blog-image,
 .blog-header {
-    text-align: center;
+    text-align: left;
+    font-family: 'Julius Sans One'
 }
 
 #blog-top {
@@ -302,19 +357,49 @@ body {
     padding-top: 3rem;
     padding-right: 2rem;
     padding-right: 2rem;
+    font-family: 'Telex';
+    font-size: 20px;
 }
-.close{
+
+.comments {
+    margin-bottom: 3rem;
+}
+
+.close {
     z-index: 2040;
 }
-.subscribe{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.445),rgba(0, 0, 0, 0.445),rgba(0, 0, 0, 0.445)), url('/static/img/bg-subscribe.gif');
+
+.subscribe {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.445), rgba(0, 0, 0, 0.445), rgba(0, 0, 0, 0.445)), url('/static/img/bg-subscribe.gif');
     padding: 5rem 0;
     color: white;
+    font-family: 'Tenor Sans'
 }
-.social{
+
+#subscribe-form #name{
+    width: 15rem;
+}
+#subscribe-form #email {
+    width: 20rem;
+}
+#subscribe-form #subscribe{
+    display: flex;
+    justify-content: left;
+}
+
+#subscribe-form form {
+    display: flex;
+    justify-content: center;
+    /* align-self: center; */
+}
+
+.social {
     padding: 2rem 0;
     background-color: black;
+    position: absolute;
+    bottom: 0;
 }
-.social a{
+
+.social a {
     color: rgb(241, 0, 0);
 }

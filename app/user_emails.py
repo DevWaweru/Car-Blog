@@ -17,4 +17,4 @@ def send_subscriptions(new_subscription):
 def send_blogs(blog):
     subscribers = Email.query.order_by('-id').all()
     for subscriber in subscribers:
-        send_email('New Blog Alert!!',sender=os.environ.get('MAIL_USERNAME'),recepients=[subscriber.email_data],text_body=render_template('emails/new_blog.txt', blog=blog, subscriber = subscriber),html_body=render_template('emails/new_blog.html', blog=blog, subscriber = subscriber))
+        send_email('**New Post Alert!!',sender=os.environ.get('MAIL_USERNAME'),recepients=[subscriber.email_data],text_body=render_template('emails/new_blog.txt', blog=blog, subscriber = subscriber),html_body=render_template('emails/new_blog.html', blog=blog, subscriber = subscriber))
