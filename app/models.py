@@ -30,7 +30,7 @@ class User(UserMixin,db.Model):
     def verify_password(self,password):
         return check_password_hash(self.hash_pass,password)  
     
-    def get_reset_password_token(self, expires_in=600):
+    def get_reset_password_token(self, expires_in=1800):
         return jwt.encode({'reset_password':self.id, 'exp':time()+expires_in}, os.environ.get('SECRET_KEY'), algorithm='HS256').decode('utf-8')
     
     @staticmethod

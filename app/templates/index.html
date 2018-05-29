@@ -31,9 +31,13 @@
         {% for blog in all_blogs %}
             <div class="col-md-3 blogs-snippet">
                 {% if blog.blog_pic %}
-                <img src="{{url_for('static',filename = blog.blog_pic)}}" alt="Loading Image" class="img-thumbnail">
+                <a href="{{url_for('main.blog',id=blog.id)}}">
+                    <img src="{{url_for('static',filename = blog.blog_pic)}}" alt="Loading Image" class="img-responsive">
+                </a>
                 {% else %}
-                <img src="{{url_for('static',filename='img/bg-blog.jpeg')}}" alt="blog-image">
+                <a href="{{url_for('main.blog',id=blog.id)}}">
+                    <img src="{{url_for('static',filename='img/bg-blog.jpeg')}}" alt="blog-image" class="img-responsive">
+                </a>
                 {% endif %}
                 <div class="blog-snippet-content">
                     <h3><a href="{{url_for('main.blog',id=blog.id)}}">{{blog.title}}</a></h3>
