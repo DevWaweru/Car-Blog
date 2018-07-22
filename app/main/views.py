@@ -46,8 +46,9 @@ def create_blog():
     if blog_form.validate_on_submit():
         blog_title = blog_form.title.data
         blog = blog_form.blog_data.data
+        url = blog_form.photo_url.data
 
-        new_blog = Blog(title=blog_title, blog_content = blog, date_posted = datetime.now())
+        new_blog = Blog(title=blog_title, blog_content = blog, date_posted = datetime.now(), photo_url=url)
         new_blog.save_blog()
 
         send_blogs(new_blog)

@@ -20,8 +20,8 @@
         </div>
         <div class="col-md-12 image">
             <div class="col-md-7 blog-image">
-                {% if get_blog.blog_pic %}
-                <img src="{{url_for('static',filename = get_blog.blog_pic)}}" alt="">
+                {% if get_blog.photo_url %}
+                <img src="{{get_blog.photo_url}}" alt="">
                 {% else %}
                 <img src="{{url_for('static',filename='img/bg-blog.jpeg')}}" alt="blog-image">
                 {% endif %}

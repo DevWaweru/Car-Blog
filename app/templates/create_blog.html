@@ -23,6 +23,12 @@
                             <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
 
+                        <p>{{blog_form.photo_url.label}}</p>
+                        <p>{{blog_form.photo_url}}</p>
+                        {% for error in blog_form.photo_url.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+
                         <p>{{blog_form.blog_data.label}}</p>
                         <p>{{blog_form.blog_data}}</p>
                         {% for error in blog_form.blog_data.errors %}

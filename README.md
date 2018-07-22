@@ -62,7 +62,7 @@ Open the browser on `http://localhost:5000/`
 
 ## Known bugs
 Sending batch emails bug
-If there are other 
+If others are found, drop me a message
 
 ## Technologies used
     - Python 3.6

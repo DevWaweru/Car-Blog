@@ -30,9 +30,9 @@
         </div>
         {% for blog in all_blogs %}
             <div class="col-md-3 blogs-snippet">
-                {% if blog.blog_pic %}
+                {% if blog.photo_url %}
                 <a href="{{url_for('main.blog',id=blog.id)}}">
-                    <img src="{{url_for('static',filename = blog.blog_pic)}}" alt="Loading Image" class="img-responsive">
+                    <img src="{{blog.photo_url}}" alt="Loading Image" class="img-responsive">
                 </a>
                 {% else %}
                 <a href="{{url_for('main.blog',id=blog.id)}}">

@@ -392,6 +392,10 @@ a:hover {
     font-size: 20px;
 }
 
+.blog-content img{
+    max-width: 100%;
+}
+
 .comments {
     margin-bottom: 3rem;
 }
@@ -417,7 +421,7 @@ a:hover {
 
 #subscribe-form #subscribe {
     display: flex;
-    justify-content: left;
+    justify-content: center;
 }
 
 #subscribe-form form {
